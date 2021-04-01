@@ -1,186 +1,121 @@
 package tn.esprit.entities;
 
-import org.springframework.security.core.GrantedAuthority;
-
-import javax.persistence.*;
-import java.util.Collection;
+import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+
 @Entity
-public class User implements org.springframework.security.core.userdetails.UserDetails {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idUser;
-    private String emailUser;
+public class User implements Serializable  {
+	@Id
+	@GeneratedValue (strategy = GenerationType.IDENTITY)
+private int idUser;
+private String nameUser;
+private String EmailUser;
+@OneToOne(mappedBy="user")
 
-    @Column(unique = true, nullable = false)
-    private String nameUser;
+private Subscription sub;
 
-    @Column(unique = false, nullable = false)
-    private String password;
-    @Column(unique = false, nullable = false)
-    private boolean enabled = true;
-    @OneToOne(mappedBy = "user")
-    private Subscription sub;
-
-    @OneToMany(
-            mappedBy = "user",
-            cascade = CascadeType.ALL
+@OneToMany(
+        mappedBy = "user",
+        cascade = CascadeType.ALL
     )
-    private List<WishList> wish;
-
-    @OneToMany(
-            mappedBy = "user",
-            cascade = CascadeType.ALL
+private List<WishList> wish;
+@OneToMany(
+        mappedBy = "user",
+        cascade = CascadeType.ALL
     )
-    private List<Ad> ad;
+private List<Ad> ad;
 
-    @OneToMany(
-            mappedBy = "user",
-            cascade = CascadeType.ALL
+@OneToMany(
+        mappedBy = "user",
+        cascade = CascadeType.ALL
     )
-    private List<Appointment> app;
+private List<Appointment> app;
 
-    @OneToMany(
-            mappedBy = "user",
-            cascade = CascadeType.ALL
+@OneToMany(
+        mappedBy = "user",
+        cascade = CascadeType.ALL
     )
-    private List<Loan> lo;
+private List<loan> lo;
 
-    @OneToMany(
-            mappedBy = "user",
-            cascade = CascadeType.ALL
+@OneToMany(
+        mappedBy = "user",
+        cascade = CascadeType.ALL
     )
-    private List<Claim> cl;
+private List<HelpCenter> cl;
 
 
-    public List<Claim> getCl() {
-        return cl;
-    }
 
-    public void setCl(List<Claim> cl) {
-        this.cl = cl;
-    }
 
-    public List<Loan> getLo() {
-        return lo;
-    }
+public List<HelpCenter> getCl() {
+	return cl;
+}
+public void setCl(List<HelpCenter> cl) {
+	this.cl = cl;
+}
 
-    public void setLo(List<Loan> lo) {
-        this.lo = lo;
-    }
-
-    public List<Appointment> getApp() {
-        return app;
-    }
-
-    public void setApp(List<Appointment> app) {
-        this.app = app;
-    }
-
-    public List<Ad> getAd() {
-        return ad;
-    }
-
-    public void setAd(List<Ad> ad) {
-        this.ad = ad;
-    }
-
-    public List<WishList> getWish() {
-        return wish;
-    }
-
-    public void setWish(List<WishList> wish) {
-        this.wish = wish;
-    }
-
-    public int getIdUser() {
-        return idUser;
-    }
-
-    public void setIdUser(int idUser) {
-        this.idUser = idUser;
-    }
-
-    public String getNameUser() {
-        return nameUser;
-    }
-
-    public void setNameUser(String nameUser) {
-        this.nameUser = nameUser;
-    }
-
-    public String getEmailUser() {
-        return emailUser;
-    }
-
-    public void setEmailUser(String emailUser) {
-        this.emailUser = emailUser;
-
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    @Override
-    public String toString() {
-        return "User [idUser=" + idUser + ", nameUser=" + nameUser + ", EmailUser=" + emailUser + "]";
-    }
-
-    public User(String nameUser, String emailUser, String password) {
-        super();
-        this.nameUser = nameUser;
-        this.emailUser = emailUser;
-        this.password = password;
-    }
-
-    public User() {
-        super();
-    }
-
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
-    }
-
-    @Override
-    public String getUsername() {
-        return this.nameUser;
-    }
-
-    @Override
-    public boolean isAccountNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isAccountNonLocked() {
-        // TODO Auto-generated method stub
-        return true;
-    }
-
-    @Override
-    public boolean isCredentialsNonExpired() {
-        // TODO Auto-generated method stub
-        return true;
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return this.enabled;
-    }
-
-    public void block() {
-        this.enabled = false;
-    }
-
-    public void unblock() {
-        this.enabled = true;
-    }
+public List<loan> getLo() {
+	return lo;
+}
+public void setLo(List<loan> lo) {
+	this.lo = lo;
+}
+public List<Appointment> getApp() {
+	return app;
+}
+public void setApp(List<Appointment> app) {
+	this.app = app;
+}
+public List<Ad> getAd() {
+	return ad;
+}
+public void setAd(List<Ad> ad) {
+	this.ad = ad;
+}
+public List<WishList> getWish() {
+	return wish;
+}
+public void setWish(List<WishList> wish) {
+	this.wish = wish;
+}
+public int getIdUser() {
+	return idUser;
+}
+public void setIdUser(int idUser) {
+	this.idUser = idUser;
+}
+public String getNameUser() {
+	return nameUser;
+}
+public void setNameUser(String nameUser) {
+	this.nameUser = nameUser;
+}
+public String getEmailUser() {
+	return EmailUser;
+}
+public void setEmailUser(String emailUser) {
+	EmailUser = emailUser;
+}
+@Override
+public String toString() {
+	return "User [idUser=" + idUser + ", nameUser=" + nameUser + ", EmailUser=" + EmailUser + "]";
+}
+public User(int idUser, String nameUser, String emailUser) {
+	super();
+	this.idUser = idUser;
+	this.nameUser = nameUser;
+	EmailUser = emailUser;
+}
+public User() {
+	super();
+	// TODO Auto-generated constructor stub
+}
 
 }

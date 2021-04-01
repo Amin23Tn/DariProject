@@ -1,46 +1,39 @@
 package tn.esprit.entities;
 
-import javax.persistence.Entity;
 import java.io.Serializable;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 @Entity
 public class Agent extends User implements Serializable {
-    private int idAgent;
-    private String NameAgent;
-    private String PrenomAgent;
+	
+	
+	private int idAgent;
+	private String NameAgent;
+	private String PrenomAgent;
+	public int getIdAgent() {
+		return idAgent;
+	}
+	public void setIdAgent(int idAgent) {
+		this.idAgent = idAgent;
+	}
+	public String getNameAgent() {
+		return NameAgent;
+	}
+	public void setNameAgent(String nameAgent) {
+		NameAgent = nameAgent;
+	}
+	public String getPrenomAgent() {
+		return PrenomAgent;
+	}
+	public void setPrenomAgent(String prenomAgent) {
+		PrenomAgent = prenomAgent;
+	}
+	public Agent(int idUser, String nameUser, String emailUser) {
+		super(idUser, nameUser, emailUser);
+	}
+	
 
-    public int getIdAgent() {
-        return idAgent;
-    }
-
-    public void setIdAgent(int idAgent) {
-        this.idAgent = idAgent;
-    }
-
-    public String getNameAgent() {
-        return NameAgent;
-    }
-
-    public void setNameAgent(String nameAgent) {
-        this.NameAgent = nameAgent;
-    }
-
-    public String getPrenomAgent() {
-        return PrenomAgent;
-    }
-
-    public void setPrenomAgent(String prenomAgent) {
-        this.PrenomAgent = prenomAgent;
-    }
-
-
-
-    public Agent(String emailUser, String password, String login) {
-        super(login, emailUser, password);
-        this.NameAgent = login;
-        this.unblock();
-    }
-    public Agent() {
-        super();
-    }
 }
