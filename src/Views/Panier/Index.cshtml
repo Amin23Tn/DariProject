@@ -1,0 +1,58 @@
+﻿@model IEnumerable<sakani.Models.Panier>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Paniers</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.IdPanier)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Date)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in ViewBag.result)
+    {
+        <tr>
+            <td>
+                @item.IdPanier
+            </td>
+            <td>
+                @item.Date
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { id=item.IdPanier  }) |
+                @Html.ActionLink("Delete", "Delete", new { id = @item.IdPanier })
+            </td>
+        </tr>
+
+    }
+
+    }
+
+</table>
+@Html.BeginForm("SearchAct", "Index", FormMethod.Post)
+        
+
+<div>
+    IdPanier:<br>
+    <input type="text" id="nameToFind" name="nameToFind">
+
+    <input type="submit" id="submitId" value="submit" />
+
+</div>
+
+        
+
+
